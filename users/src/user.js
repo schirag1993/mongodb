@@ -19,8 +19,15 @@ const UserSchema = new Schema({
   }]
 });
 
-UserSchema.virtual('postCount').get(function() { //Note the significance of "function() {}" over "() => {}"
+UserSchema.virtual('postCount').get(function() { //Note the significance of "function() {}" over "() => {}"; this is because the model instance (UserSchema) is available as "this"
   return this.posts.length;
+});
+
+UserSchema.pre('remove', function(next) {
+  //this === 'joe' // only in this scenario because we use joe as the user to save/remove/edit
+  const BlogPost = mongoose.model('blogPost');
+  BlogPost.remove({ _id : { $in: this.blogPosts } })
+  .then(() => next());
 });
 
 const User = mongoose.model('user', UserSchema);

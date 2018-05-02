@@ -55,20 +55,5 @@ describe('Associations', () => {
         assert(user.blogPosts[0].title === 'JS is good')
         done();
       });
-
-    // it('saves a full relation graph', (done) => {
-    //   User.findOne({name: 'joe'})
-    //     .populate({
-    //       path: 'blogPosts',
-    //       populate: {
-    //         path: 'comments',
-    //         model: 'comment'
-    //       }
-    //     })
-    //     .then((user) => {
-    //       console.log(user);
-    //       done();
-    //     });
-    // });
   });
 });
