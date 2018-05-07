@@ -27,5 +27,5 @@ describe('Middleware', () => {
       assert(count === 0);
       done();
     })
-  })
+  });
 })
